@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :mbta, Mbta.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "mbta-tool",
+  password: "iPooshiet9",
   database: "mbta_dev",
   hostname: "localhost",
   pool_size: 10

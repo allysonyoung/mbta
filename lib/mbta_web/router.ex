@@ -2,6 +2,7 @@ defmodule MbtaWeb.Router do
   use MbtaWeb, :router
 
   pipeline :browser do
+    plug :accepts, ["json"]
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -17,6 +18,7 @@ defmodule MbtaWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/alerts", AlertsController, :index
   end
 
   # Other scopes may use custom stacks.

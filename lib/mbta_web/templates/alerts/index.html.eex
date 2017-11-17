@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Alerts</h2>
+  <table class="table">
+  <tbody id="alerts">
+  <%= for alert <- get_alerts("header_text") do %>
+    <tr>
+      <td><%= alert %></td>
+    </tr>
+  <% end %> 
+
+</div>
