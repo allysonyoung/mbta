@@ -19,6 +19,8 @@ defmodule MbtaWeb.Router do
 
     get "/", PageController, :index
     get "/alerts", AlertsController, :index
+    resources "/users", UserController
+
   end
 
   # Other scopes may use custom stacks.
