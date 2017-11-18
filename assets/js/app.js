@@ -19,3 +19,12 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+import ReactDOM from 'react-dom';
+
+import Index from './index';
+
+function start() {
+    ReactDOM.render(<Index />, document.getElementById('index'));
+}
+
+$(start);
