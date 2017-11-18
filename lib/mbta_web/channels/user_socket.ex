@@ -3,6 +3,7 @@ defmodule MbtaWeb.UserSocket do
 
   ## Channels
   # channel "room:*", MbtaWeb.RoomChannel
+  channel "updates:all", MbtaWeb.AlertsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
