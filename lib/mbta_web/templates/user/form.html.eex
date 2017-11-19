@@ -6,7 +6,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
+    <%= label f, "Display Name", class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
     <%= error_tag f, :name %>
   </div>
@@ -18,21 +18,20 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :password_hash, class: "control-label" %>
-    <%= text_input f, :password_hash, class: "form-control" %>
-    <%= error_tag f, :password_hash %>
+    <%= label f, :password, class: "control-label" %>
+    <%= password_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
   </div>
 
   <div class="form-group">
-    <%= label f, :pw_tries, class: "control-label" %>
-    <%= number_input f, :pw_tries, class: "form-control" %>
-    <%= error_tag f, :pw_tries %>
+    <%= label f, :password_confirmation, class: "control-label" %>
+    <%= password_input f, :password_confirmation, class: "form-control" %>
+    <%= error_tag f, :password_confirmation %>
   </div>
 
   <div class="form-group">
-    <%= label f, :pw_last_try, class: "control-label" %>
-    <%= datetime_select f, :pw_last_try, class: "form-control" %>
-    <%= error_tag f, :pw_last_try %>
+    <%= hidden_input f, :bio, class: "form-control", value: "" %>
+    <%= error_tag f, :bio %>
   </div>
 
   <div class="form-group">

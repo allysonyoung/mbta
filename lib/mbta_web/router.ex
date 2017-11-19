@@ -7,6 +7,7 @@ defmodule MbtaWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
+    plug :set_user
     plug :fetch_user
     plug :protect_from_forgery
     plug :put_secure_browser_headers
@@ -32,4 +33,10 @@ defmodule MbtaWeb.Router do
   # scope "/api", MbtaWeb do
   #   pipe_through :api
   # end
+
+  def set_user(conn, _params) do
+    conn
+    |> assign(:user_name, nil)
+    |> assign(:user_token, nil)
+  end
 end
