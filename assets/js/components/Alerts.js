@@ -6,6 +6,7 @@ class Alerts extends React.Component {
     return (
       <div>
         <h1>ALERTS</h1>
+        <p>Alerts will go here.</p>
       </div>
     );
   }

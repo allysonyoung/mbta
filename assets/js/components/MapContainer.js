@@ -1,38 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 const BOSTON_POSITION = {
   lat: 42.3601,
   lng: -71.0598
 };
 
-class Map extends React.Component {
-  constructor() {
-    super();
-    this.currLat = 0;
-    this.currLng = 0;
-    this.locateMe = this.locateMe.bind(this);
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Address:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+class Map extends React.Component {
 
   componentDidMount() {
     this.map = new google.maps.Map(this.refs.map, {
       center: BOSTON_POSITION,
       zoom: 16
     });
-  }
-
-  locateMe() {
-    navigator.geolocation.getCurrentPosition((pos) => {
-        var coords = pos.coords;
-        this.currLat = coords.latitude;
-        this.currLng = coords.longitude;
-    })
-    var CURR = {
-      lat: this.currLat,
-      lng: this.currLng
-    }
-
-    this.map.panTo(CURR);
   }
 
   render() {
@@ -43,7 +55,8 @@ class Map extends React.Component {
 
     return (
       <div>
-        <button onClick={this.locateMe}>Locate Me</button>
+        <h1>Next Bus</h1>
+        <Form />
         <div ref="map" style={mapStyle}>I should be a map!</div>
       </div>
     );

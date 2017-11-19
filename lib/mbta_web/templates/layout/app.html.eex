@@ -41,7 +41,7 @@
           <% end %>
         </div>
 
-      <main role="main">
+      <main role="main" class="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
