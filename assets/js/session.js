@@ -16,7 +16,7 @@ export default class Session extends React.Component {
 
   render() {
     return (
-      <div class="container">
+      <div>
         <Alerts alerts={this.state.alerts} />
       </div>
     );

@@ -35,10 +35,8 @@ defmodule MbtaWeb.Router do
   # end
 
   def set_user(conn, _params) do
-    user_id = 0
-    token = Phoenix.Token.sign(MbtaWeb.Endpoint, "id", user_id)
+    user = 0
     conn
-    |> assign(:user_id, user_id)
-    |> assign(:user_token, token)
+    |> assign(:user_id, user)
   end
 end

@@ -44,18 +44,15 @@ defmodule MbtaWeb.SessionController do
 
   def login(conn, %{"email" => email, "password" => password}) do
     user = get_and_auth_user(email, password)
-    token = Phoenix.Token.sign(MbtaWeb.Endpoint, "user_id", user)
 
     if user do
       conn
       |> put_session(:user_id, user.id)
-      |> put_session(:user_token, token)
       |> put_flash(:info, "Logged in as #{user.email}")
       |> redirect(to: page_path(conn, :index))
     else
       conn
       |> put_session(:user_id, nil)
-      |> put_session(:user_token, nil)
       |> put_flash(:error, "Email/password not found.")
       |> redirect(to: page_path(conn, :index))
     end
@@ -64,7 +61,6 @@ defmodule MbtaWeb.SessionController do
   def logout(conn, _args) do
     conn
     |> put_session(:user_id, nil)
-    |> put_session(:user_token, nil)
     |> put_flash(:info, "Logged out.")
     |> redirect(to: page_path(conn, :index))
   end

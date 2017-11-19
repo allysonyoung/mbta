@@ -26,13 +26,12 @@ import Index from './Index';
 
 function ready(channel, state) {
   let index = document.getElementById('index');
+  console.log(channel);
   ReactDOM.render(<Session state={state} channel={channel} />, index);
 }
 
-/*
-// this is real one
 function start() {
-  let channel = socket.channel("user:" + window.user_id, {});
+  let channel = socket.channel("user:all", {});
   console.log(channel);
   channel.join()
     .receive("ok", state0 => {
@@ -42,15 +41,6 @@ function start() {
     .receive("error", resp => {
       console.log("Unable to join", resp);
     });
-}
-*/
-
-// testing
-function start() {
-  channel = null;
-  state = Session.new();
-  console.log(state);
-  ready(channel, state);
 }
 
 $(start);

@@ -62,10 +62,9 @@
 
     </div> <!-- /container -->
 
-    <%= if @user_token do %>
+    <%= if @current_user do %>
     <script>
         window.user_id = "<%= @user_id %>";
-        window.user_token = "<%= @user_token %>;
     </script>
     <% end %>
 
