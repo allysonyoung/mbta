@@ -11,7 +11,7 @@ class Alerts extends React.Component {
     return (
       <div>
         <h1>ALERTS</h1>
-        <table class="table">
+        <table>
         <tbody id="alerts">
             <tr>
                 <td>"alerts go here"</td>
