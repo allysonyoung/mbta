@@ -28,6 +28,22 @@
             <a class="nav-link" href="">Directions</a>
           </li>
         </ul>
+
+        <%= if @current_user do %>
+        <span class="text-light">
+          <%= @current_user.email %> |
+          <%= link("Logout", to: session_path(@conn, :logout), method: :delete) %>
+        </span>
+        <% else %>
+          <%= form_for @conn, session_path(@conn, :login),
+                [as: "user", class: "form-inline w-75"], fn _f -> %>
+          <input type="text" placeholder="email"
+                 class="form-control" name="email">
+          <input type="password" placeholder="password"
+                 class="form-control" name="password">
+          <input type="submit" value="Log in" class="btn btn-primary">
+          <% end %>
+        <% end %>
       </div>
     </nav>
     <div class="container">
@@ -46,6 +62,14 @@
       </main>
 
     </div> <!-- /container -->
+
+    <%= if @user_token do %>
+    <script>
+        window.user_id = "<%= @user_id %>";
+        window.user_token = "<%= @user_token %>;
+    </script>
+    <% end %>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsICMQ8Te4qMAuWnsx8vLE6aIHW5xOXgY"></script>

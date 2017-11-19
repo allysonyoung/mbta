@@ -11,17 +11,36 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-//import "phoenix_html"
+import "phoenix_html";
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import socket from "./socket";
+import Session from "./session";
+import Index from './Index';
+
+ReactDOM.render(<Index />, document.getElementById('index'));
 // Import local files
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
-import React from 'react';
-import ReactDOM from 'react-dom';
+function ready(channel, state) {
+  let index = document.getElementById('index');
+  ReactDOM.render(<Session state={state} channel={channel} />, index);
+}
 
-import Index from './Index';
+function start() {
+  let channel = socket.channel("user:" + window.user_id, {});
+  channel.join()
+    .receive("ok", state0 => {
+      console.log("Joined successfully", state0);
+      ready(channel, state0);
+    })
+    .receive("error", resp => {
+      console.log("Unable to join", resp);
+    });
+}
 
-ReactDOM.render(<Index />, document.getElementById('index'));
+$(start);
+
