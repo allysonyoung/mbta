@@ -1,5 +1,6 @@
 import React from 'react';
 import Index from './Index';
+import Alerts from './components/Alerts.js'
 
 export default class Session extends React.Component {
   constructor(props) {

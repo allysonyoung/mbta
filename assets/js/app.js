@@ -16,10 +16,9 @@ import "phoenix_html";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import socket from "./socket";
-import session from "./session";
+import Session from "./session";
 import Index from './Index';
 
-ReactDOM.render(<Index />, document.getElementById('index'));
 // Import local files
 //
 // Local files can be imported directly using relative
@@ -30,8 +29,11 @@ function ready(channel, state) {
   ReactDOM.render(<Session state={state} channel={channel} />, index);
 }
 
+/*
+// this is real one
 function start() {
   let channel = socket.channel("user:" + window.user_id, {});
+  console.log(channel);
   channel.join()
     .receive("ok", state0 => {
       console.log("Joined successfully", state0);
@@ -40,6 +42,15 @@ function start() {
     .receive("error", resp => {
       console.log("Unable to join", resp);
     });
+}
+*/
+
+// testing
+function start() {
+  channel = null;
+  state = Session.new();
+  console.log(state);
+  ready(channel, state);
 }
 
 $(start);

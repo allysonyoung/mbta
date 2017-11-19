@@ -28,7 +28,6 @@
             <a class="nav-link" href="">Directions</a>
           </li>
         </ul>
-
         <%= if @current_user do %>
         <span class="text-light">
           <%= @current_user.email %> |
