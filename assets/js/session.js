@@ -1,4 +1,5 @@
 import React from 'react';
+import Index from './Index';
 
 export default class Session extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Session extends React.Component {
   render() {
     return (
       <div class="container">
+        <Alerts alerts={this.state.alerts} />
       </div>
     );
   }

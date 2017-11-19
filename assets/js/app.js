@@ -15,6 +15,7 @@ import "phoenix_html";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Index from './Index';
 
 // Import local files
 //
