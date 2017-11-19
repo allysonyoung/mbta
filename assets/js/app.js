@@ -15,15 +15,15 @@ import "phoenix_html";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import socket from "./socket";
+import Session from "./session";
+import Index from './Index';
 
+ReactDOM.render(<Index />, document.getElementById('index'));
 // Import local files
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
-
-import socket from "./socket";
-
-import Session from "./session";
 
 function ready(channel, state) {
   let index = document.getElementById('index');
@@ -43,3 +43,4 @@ function start() {
 }
 
 $(start);
+
