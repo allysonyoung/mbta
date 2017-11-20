@@ -1,3 +1,7 @@
+<%= if @current_user do %>
 <div id="index">
   <div id="alerts-section"></div>
 </div>
+<% else %>
+<p>To use this feature of the app, <%= link "Signup", to: user_path(@conn, :new) %> or Login above.</p>
+<% end %>

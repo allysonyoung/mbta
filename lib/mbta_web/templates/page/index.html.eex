@@ -1,5 +1,14 @@
+<%= if @current_user do %>
 <div id="index">
   <div id="directions">
     <div id="map"></div>
   </div>
 </div>
+<% else %>
+<div class="jumbotron text-center">
+  <h2 class="display-2">MBTA Tool</h2>
+  <p class="lead">See the latest MBTA alerts and nearest bus stop locations from your location</p>
+  <hr class="my-4">
+  <p><%= link "Signup", to: user_path(@conn, :new) %> or Login above to get started.</p>
+</div>
+<% end %>

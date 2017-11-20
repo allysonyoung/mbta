@@ -5,7 +5,7 @@ class Alert extends React.Component {
   render() {
     return (
       <tr>
-        {this.props.text}
+        - {this.props.text}
       </tr>
     );
   }
