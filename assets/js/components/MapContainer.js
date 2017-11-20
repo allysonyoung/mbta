@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import NearestStops from './NearestStops';
+
 const BOSTON_POSITION = {
   lat: 42.3601,
   lng: -71.0598
@@ -8,7 +10,12 @@ const BOSTON_POSITION = {
 
 class Map extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+
+    this.state = {
+      lat: 0,
+      lng: 0
+    }
   }
 
   componentDidMount() {
@@ -29,10 +36,23 @@ class Map extends React.Component {
           map: resultsMap,
           position: results[0].geometry.location
         });
+
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
+  }
+
+  getLatLng(geocoder) {
+    var address = this.props.address;
+    geocoder.geocode({'address': address}, (results, status) => {
+      if (status === 'OK') {
+        this.setState({
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng()
+        })
+      }
+    })
   }
 
   render() {
@@ -43,19 +63,23 @@ class Map extends React.Component {
 
     if (this.props.submitted) {
       this.geocodeAddress(this.geocoder, this.map);
+      this.getLatLng(this.geocoder);
     }
 
     return (
       <div>
-        <p>{this.props.submitted}</p>
         <p>{this.props.address}</p>
         <div ref="map" style={mapStyle}></div>
+        <div>
+          <h2>Bus Stops Near You</h2>
+          <NearestStops lat={this.state.lat} lng={this.state.lng} />
+        </div>
       </div>
     );
   }
 }
 
-class Form extends React.Component {
+export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: '', submitted: false};
