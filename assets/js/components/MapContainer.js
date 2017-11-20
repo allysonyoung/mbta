@@ -63,7 +63,10 @@ class Map extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Map />,
-  document.getElementById('map')
-);
+function reactDOM() {
+  if (document.getElementById('map') != null) {
+    ReactDOM.render(<Map />, document.getElementById('map'));
+  }
+}
+
+$(reactDOM)

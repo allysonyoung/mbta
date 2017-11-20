@@ -1,21 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Alerts extends React.Component {
+class Alert extends React.Component {
   render() {
-    let alerts = this.props.alerts;
-    // FIGURE OUT HOW TO RENDER ELIXIR LISTS IN JS
-    // SHOULD I USE MAP/ LISTS? I THOUGHT JS HAD LISTS
-    // SO I DON'T SEE WHY THIS NO LOG/ WORK
-    console.log(alerts);
     return (
-      <div>
+      <tr>
+        {this.props.text}
+      </tr>
+    );
+  }
+}
+
+export default class Alerts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props.state;
+  }
+
+  render() {
+    let alerts_list = this.props.alerts;
+    let alerts_text = _.map(alerts_list, text => (
+      <Alert text={text} />
+    ));
+    return (
+      <div className="container">
         <h1>ALERTS</h1>
         <table>
         <tbody id="alerts">
-            <tr>
-                <td>"alerts go here"</td>
-            </tr>
+            {alerts_text}
        </tbody>
        </table>
       </div>
@@ -23,4 +35,10 @@ class Alerts extends React.Component {
   }
 };
 
-ReactDOM.render(<Alerts />, document.getElementById('alerts-section'));
+function reactDOM() {
+  if (document.getElementById('alerts-section') != null) {
+    ReactDOM.render(<Alerts />, document.getElementById('alerts-section'));
+  }
+}
+
+$(reactDOM)

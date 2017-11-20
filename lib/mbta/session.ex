@@ -11,8 +11,8 @@ defmodule Mbta.Session do
 
   def client_view(session) do
     %{
-      alerts: session.alerts
-    }   
+      alerts: get_alerts()
+    }
   end
 
   # returns map of alerts concerning all of mbta transit

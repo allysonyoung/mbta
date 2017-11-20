@@ -16,8 +16,8 @@ import "phoenix_html";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import socket from "./socket";
+import Index from "./Index";
 import Session from "./session";
-import Index from './Index';
 
 // Import local files
 //
@@ -27,7 +27,11 @@ import Index from './Index';
 function ready(channel, state) {
   let index = document.getElementById('index');
   console.log(channel);
-  ReactDOM.render(<Session state={state} channel={channel} />, index);
+  if (document.getElementById('map') != null) {
+    ReactDOM.render(<Index state={state} channel={channel} />, index);
+  } else {
+    ReactDOM.render(<Session state={state} channel={channel} />, index);
+  } 
 }
 
 function start() {

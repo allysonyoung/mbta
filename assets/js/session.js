@@ -1,6 +1,6 @@
 import React from 'react';
-import Index from './Index';
 import Alerts from './components/Alerts.js'
+import MapContainer from './components/MapContainer'
 
 export default class Session extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class Session extends React.Component {
   render() {
     return (
       <div>
-        <Alerts alerts={this.state.alerts} />
+        <Alerts alerts={this.state.alerts} state={this.state} />
       </div>
     );
   }
