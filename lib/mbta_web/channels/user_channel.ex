@@ -3,15 +3,11 @@ defmodule MbtaWeb.UserChannel do
   alias Mbta.Session
 
   def join("user:" <> user_id, _payload, socket) do
-    if authorized?(socket, user_id) do
-      session = Session.new()
-      socket = socket
-      |> assign(:session, session)
-      |> assign(:user_id, user_id)
-      {:ok, Session.client_view(session), socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
+    session = Session.new()
+    socket = socket
+    |> assign(:session, session)
+    |> assign(:user_id, user_id)
+    {:ok, Session.client_view(session), socket}
   end
 
   # Channels can be used in a request/response fashion
@@ -42,7 +38,7 @@ defmodule MbtaWeb.UserChannel do
   end
 
   # Add authorization logic here as required.
-  defp authorized?(socket, user_id) do
-    socket.assigns[:id] == user_id
+  defp authorized?(_payload) do
+    true
   end
 end

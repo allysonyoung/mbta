@@ -4,12 +4,15 @@ defmodule Mbta.Session do
       curLoc: nil,
       alerts: get_alerts(),
       direction: 0,
-      stop_id: nil
+      stop_id: nil,
+      bus_makers: nil
     }
   end
 
   def client_view(session) do
-    
+    %{
+      alerts: get_alerts()
+    }
   end
 
   # returns map of alerts concerning all of mbta transit
@@ -23,13 +26,22 @@ defmodule Mbta.Session do
       x["header_text"]
     end
   end
-"""
+
   def curLoc(session, lat, long) do
+    Map.put(session, :curLoc, [lat, long])
   end
 
-  def busMove(session, bus_id, lat, long) do
+  # bus_markers = [[1, [0.1,0.2]], [2, [0.2, 0.3]]]
+  # UPDATES TO BUS FROM ROUTES OF A PARTICULAR BUS STATION
+  def busMove(session, route_id, lat, long) do
+    curBuses = session.bus_markers
+    bus = List.find(curBuses, List.starts_with?(route_id)) 
+    if bus do
+      updatedBuses = List.replace(curBuses, bus, [route_id, [lat, long]])
+    end
+    Map.put(session, :bus_markers, updatedBuses)
   end
-"""
+
   def pushAlert(session) do
     alerts = session.alerts
     first = [List.first(alerts)]

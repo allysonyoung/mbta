@@ -114,7 +114,10 @@ export default class Form extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Form />,
-  document.getElementById('map')
-);
+function reactDOM() {
+  if (document.getElementById('map') != null) {
+    ReactDOM.render(<Map />, document.getElementById('map'));
+  }
+}
+
+$(reactDOM)

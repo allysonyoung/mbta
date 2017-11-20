@@ -14,7 +14,7 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-      <a class="navbar-brand" href="">MBTA Tool</a>
+      <a class="navbar-brand" href="/">MBTA Tool</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,13 +22,9 @@
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="">Next Bus</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Directions</a>
+            <a class="nav-link" href="/alerts">Alerts</a>
           </li>
         </ul>
-
         <%= if @current_user do %>
         <span class="text-light">
           <%= @current_user.email %> |
@@ -63,13 +59,13 @@
 
     </div> <!-- /container -->
 
-    <%= if @user_token do %>
+    <%= if @current_user do %>
     <script>
         window.user_id = "<%= @user_id %>";
-        window.user_token = "<%= @user_token %>;
     </script>
     <% end %>
 
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsICMQ8Te4qMAuWnsx8vLE6aIHW5xOXgY"></script>

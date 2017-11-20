@@ -2,5 +2,4 @@
   <div id="directions">
     <div id="map"></div>
   </div>
-  <div id="alerts-section"></div>
 </div>
