@@ -5,7 +5,7 @@ class Alert extends React.Component {
   render() {
     return (
       <tr>
-        - {this.props.text}
+        <td>{this.props.text}</td>
       </tr>
     );
   }
@@ -19,13 +19,14 @@ export default class Alerts extends React.Component {
 
   render() {
     let alerts_list = this.props.alerts;
+    let count = 1;
     let alerts_text = _.map(alerts_list, text => (
-      <Alert text={text} />
+      <Alert text={text} key={count++} />
     ));
     return (
       <div className="container">
         <h1>ALERTS</h1>
-        <table>
+        <table className="table">
         <tbody id="alerts">
             {alerts_text}
        </tbody>
