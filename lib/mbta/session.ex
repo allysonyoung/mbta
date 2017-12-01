@@ -21,10 +21,18 @@ defmodule Mbta.Session do
     key = Application.get_env(:mbta, MbtaWeb.Endpoint)[:API_KEY]
     resp = HTTPoison.get!("http://realtime.mbta.com/developer/api/v2/alerts?api_key=" <> key <> "&include_access_alerts=true&include_service_alerts=true&format=json")
     data = Poison.decode!(resp.body)
-    xs = data["alerts"]
-    Enum.map xs, fn x ->
-      x["header_text"]
-    end
+    alerts = data["alerts"]
+    Enum.map(
+      Enum.filter(alerts, fn(alert) ->
+        Enum.find(alert["affected_services"]["services"], fn(s_affected) ->
+          s_affected["mode_name"] == "Bus"
+        end)
+      end), 
+      fn(alert) ->
+        %{header: alert["header_text"], 
+          description: alert["description_text"], 
+          severity: alert["severity"]}
+    end)
   end
 
   def curLoc(session, lat, long) do

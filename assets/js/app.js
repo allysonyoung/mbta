@@ -44,7 +44,13 @@ function start() {
     })
     .receive("error", resp => {
       console.log("Unable to join", resp);
-    });
+    })
+  let trigger = document.getElementById("trigger");
+  trigger.addEventListener("click", event => {
+    console.log("Updating alerts...");
+    // checks if new alert updates and pushes them to channel, else nothing
+    channel.push("alerts_update");
+  })    
 }
 
 $(start);

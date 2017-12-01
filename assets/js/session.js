@@ -8,12 +8,6 @@ export default class Session extends React.Component {
     this.state = this.props.state;
   }
 
-  onTick() {
-    // checks if new alert updates and pushes them to channel, else nothing
-    this.props.channel.push("alerts_update"),
-      receive("ok", state => this.setState(state));
-  }
-
   render() {
     return (
       <div>

@@ -1,7 +1,21 @@
 <%= if @current_user do %>
 <div id="index">
   <div id="alerts-section"></div>
+  <input type="button" id="trigger"/>
 </div>
 <% else %>
 <p>To use this feature of the app, <%= link "Signup", to: user_path(@conn, :new) %> or Login above.</p>
 <% end %>
+
+<script>
+  // button will trigger alerts updates
+  let button = document.getElementById('trigger')
+
+  // set button to be hidden
+  button.style.visibility = 'hidden'
+
+  // updates alerts every 10 mins
+  setInterval(function() {
+    button.click();
+    }, 600000)
+</script>
