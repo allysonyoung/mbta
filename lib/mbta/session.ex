@@ -29,7 +29,9 @@ defmodule Mbta.Session do
         end)
       end), 
       fn(alert) ->
-        %{text: alert["header_text"], severity: alert["severity"]}
+        %{header: alert["header_text"], 
+          description: alert["description_text"], 
+          severity: alert["severity"]}
     end)
   end
 

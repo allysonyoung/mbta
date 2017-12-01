@@ -14,7 +14,7 @@
   // set button to be hidden
   button.style.visibility = 'hidden'
 
-  // updates alerts every 5 seconds
+  // updates alerts every 10 mins
   setInterval(function() {
     button.click();
     }, 600000)
