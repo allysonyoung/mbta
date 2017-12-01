@@ -17,5 +17,5 @@
   // updates alerts every 5 seconds
   setInterval(function() {
     button.click();
-    }, 60000)
+    }, 600000)
 </script>
