@@ -1,5 +1,6 @@
-# Mbta
+Google Maps API implementation (geolocation) is taken from their documentation guide
 
+# Mbta
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
